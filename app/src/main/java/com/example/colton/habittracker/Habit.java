@@ -6,6 +6,7 @@ package com.example.colton.habittracker;
 
 public class Habit implements HabitInterface{
     private String message;
+    private Integer completedCount;
 
     public Habit(String text) {
         setMessage(text);
@@ -17,5 +18,22 @@ public class Habit implements HabitInterface{
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Integer getCompletedCount() {
+        return completedCount;
+    }
+
+    public void setCompletedCount(Integer completedCount) {
+        this.completedCount = completedCount;
+    }
+
+    public void Complete() {
+        this.completedCount += 1;
+    }
+
+    @Override
+    public String toString() {
+        return this.message.toString();
     }
 }

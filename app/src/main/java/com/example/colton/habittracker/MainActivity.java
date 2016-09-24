@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Habit> habitList = new ArrayList<>();
 //    private ArrayList<String> habitStringList = new ArrayList<String>();
 //    private RecyclerView<Habit> habbitView;
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<Habit> adapter;
     private ListView habitListView;// = (ListView) findViewById(R.id.habitListView);
     private EditText habitText;
 
@@ -32,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         habitListView = (ListView) findViewById(R.id.habitListView);
+//        EditText editText = new EditText();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button okButton = (Button) findViewById(R.id.button);
         setSupportActionBar(toolbar);
         habitText = (EditText) findViewById(R.id.enterHabit);
         String[] habitStringList ={"test", "test2"};
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, habitStringList);
+        adapter = new ArrayAdapter<Habit>(this, R.layout.list_item, habitList);
         habitListView.setAdapter(adapter);
 
 
@@ -48,9 +49,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = habitText.getText().toString();
-                Habit newHabit = new Habit(text);
-                habitList.add(newHabit);
-//                habitStringList.add(text);
+                if (!text.isEmpty()) {
+                    Habit newHabit = new Habit(text);
+                    habitList.add(newHabit);
+//                habitList.add(text);
+                    adapter.notifyDataSetChanged();
+                }
 
             }
         });
