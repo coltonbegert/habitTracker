@@ -15,11 +15,15 @@ import android.widget.TextView;
 public class HabitViewHolder extends RecyclerView.ViewHolder {
     private TextView habitMessage;
     private Button habitCompleteButton;
+    private Button deleteButton;
+    private TextView completedNumber;
 
     public HabitViewHolder(View itemView) {
         super(itemView);
         habitCompleteButton = (Button) itemView.findViewById(R.id.habitCompleteButton);
         habitMessage = (TextView) itemView.findViewById(R.id.habitTextView);
+        deleteButton = (Button) itemView.findViewById(R.id.deleteButton);
+        completedNumber = (TextView) itemView.findViewById(R.id.completedNumber);
     }
 
     public TextView getHabitMessage() {
@@ -36,5 +40,13 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
 
     public void setHabitCompleteButton(Button habitCompleteButton) {
         this.habitCompleteButton = habitCompleteButton;
+    }
+
+    public Button getDeleteButton() {
+        return deleteButton;
+    }
+
+    public TextView getCompletedNumber() {
+        return completedNumber;
     }
 }

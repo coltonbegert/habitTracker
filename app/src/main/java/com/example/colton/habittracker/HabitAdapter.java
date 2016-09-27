@@ -24,6 +24,7 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public HabitAdapter(ArrayList<Habit> hList) {
 //        super(context, resource);
         this.habitList = hList;
+
     }
 
     @Override
@@ -37,16 +38,39 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         HabitViewHolder viewHolder = (HabitViewHolder) holder;
         viewHolder.getHabitMessage().setText(habitList.get(position).getMessage());
+        viewHolder.getCompletedNumber().setText(habitList.get(position).getCompletedCount().toString());
+        viewHolder.getHabitCompleteButton().setText("complete");
+
+
+//        http://stackoverflow.com/questions/29698436/how-to-handle-multiple-layout-clicks-in-recyclerview-in-android
+//        used to find the proper way of implemeting onclicklisteners in recyclerviews
+        viewHolder.getDeleteButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                habitList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+        viewHolder.getHabitCompleteButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                habitList.get(position).Complete();
+                notifyDataSetChanged();
+            }
+        });
+
+
 
 
     }
 
-
+//
     @Override
     public int getItemCount() {
         return this.habitList.size();
     }
+
 }
