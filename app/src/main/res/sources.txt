@@ -1,1 +1,5 @@
 This is my source list
+https://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView
+// used in the creation of the Habit Adapter, ViewHolder and the implementaion into the MainActivity.
+// The guide was used as inspiration as well as an explanation of the workings of a recyclerview
+// The code from the guide is open source as stated in the websites homepage and is designed to provide easy access to code snipets and explanations

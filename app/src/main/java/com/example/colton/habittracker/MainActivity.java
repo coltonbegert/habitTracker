@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -21,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Habit> habitList = new ArrayList<>();
 //    private ArrayList<String> habitStringList = new ArrayList<String>();
 //    private RecyclerView<Habit> habbitView;
-    private ArrayAdapter<Habit> adapter;
-    private ListView habitListView;// = (ListView) findViewById(R.id.habitListView);
+    private HabitAdapter adapter;
+//    private ListView habitListView;// = (ListView) findViewById(R.id.habitListView);
     private EditText habitText;
+    private RecyclerView habitRecyclerView;
 
 
     @Override
@@ -31,16 +34,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        habitListView = (ListView) findViewById(R.id.habitListView);
+//        habitListView = (ListView) findViewById(R.id.habitListView);
 //        EditText editText = new EditText();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button okButton = (Button) findViewById(R.id.button);
         setSupportActionBar(toolbar);
         habitText = (EditText) findViewById(R.id.enterHabit);
-        String[] habitStringList ={"test", "test2"};
-        adapter = new ArrayAdapter<Habit>(this, R.layout.list_item, habitList);
-        habitListView.setAdapter(adapter);
+//        String[] habitStringList ={"test", "test2"};
+//        adapter = new ArrayAdapter<Habit>(this, R.layout.list_item, habitList);
+//        habitListView.setAdapter(adapter);
+//        adapter = new HabitAdapter(habitList);
+        habitRecyclerView = (RecyclerView) findViewById(R.id.habitRecyclerView);
+        adapter = new HabitAdapter(habitList);
+        habitRecyclerView.setAdapter(adapter);
+        habitRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
 
 
 
