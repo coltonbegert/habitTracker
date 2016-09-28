@@ -7,3 +7,6 @@ https://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView
 
 http://stackoverflow.com/questions/29698436/how-to-handle-multiple-layout-clicks-in-recyclerview-in-android
 // used in habit adapter to implement onClickListeners in recyclerviews
+
+http://stackoverflow.com/questions/18598255/android-create-a-toggle-button-with-image-and-no-text
+// used in expander_icon to make the dropdown arrow
