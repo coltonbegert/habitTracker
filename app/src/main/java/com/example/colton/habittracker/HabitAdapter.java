@@ -53,6 +53,7 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         viewHolder.getDeleteButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                viewHolder.getStatisticToggle().setChecked(false);
                 habitList.remove(position);
                 notifyDataSetChanged();
             }

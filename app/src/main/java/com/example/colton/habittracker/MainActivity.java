@@ -33,10 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String FILENAME = "savedHabits.sav";
     private ArrayList<Habit> habitList = new ArrayList<>();
-//    private ArrayList<String> habitStringList = new ArrayList<String>();
-//    private RecyclerView<Habit> habbitView;
     private HabitAdapter adapter;
-//    private ListView habitListView;// = (ListView) findViewById(R.id.habitListView);
     private EditText habitText;
     private RecyclerView habitRecyclerView;
 
@@ -46,18 +43,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        habitListView = (ListView) findViewById(R.id.habitListView);
-//        EditText editText = new EditText();
         loadFromFile();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button okButton = (Button) findViewById(R.id.button);
         setSupportActionBar(toolbar);
         habitText = (EditText) findViewById(R.id.enterHabit);
-//        String[] habitStringList ={"test", "test2"};
-//        adapter = new ArrayAdapter<Habit>(this, R.layout.list_item, habitList);
-//        habitListView.setAdapter(adapter);
-//        adapter = new HabitAdapter(habitList);
+
         habitRecyclerView = (RecyclerView) findViewById(R.id.habitRecyclerView);
         adapter = new HabitAdapter(habitList);
         habitRecyclerView.setAdapter(adapter);
