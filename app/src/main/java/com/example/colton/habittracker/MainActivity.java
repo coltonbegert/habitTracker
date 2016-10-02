@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private HabitAdapter adapter;
     private EditText habitText;
     private RecyclerView habitRecyclerView;
+    private HabitManager habitManager;
 
 
     @Override
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        loadFromFile();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button okButton = (Button) findViewById(R.id.button);
@@ -54,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
         adapter = new HabitAdapter(habitList);
         habitRecyclerView.setAdapter(adapter);
         habitRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        habitManager = new HabitManager();
+
+        //        loadFromFile();
+//        habitManager.setHabitList(loadedhabitlist);
 
 
 
@@ -67,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!text.isEmpty()) {
                     Habit newHabit = new Habit(text);
 //                    newHabit.Complete();
+                    habitManager.addHabit(newHabit);
                     habitList.add(newHabit);
 //                habitList.add(text);
                     adapter.notifyDataSetChanged();

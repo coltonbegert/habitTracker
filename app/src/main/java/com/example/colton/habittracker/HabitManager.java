@@ -10,25 +10,34 @@ public class HabitManager {
     private ArrayList<Habit> habitList;
 
     public HabitManager() {
+        this.habitList = new ArrayList<>();
 
     }
 
-    public void AddHabit(Habit habit){
+    public void addHabit(Habit habit){
         if (!habitList.contains(habit)){
             habitList.add(habit);
         }
 
     }
-    public void DeleteHait(Habit habit){
+    public void deleteHait(Habit habit){
         if(habitList.contains(habit)) {
             habitList.remove(habit);
         }
     }
+    public void setHabitList(ArrayList<Habit> habitList){
+        this.habitList = habitList;
+    }
 
 
-//    public  ArrayList getHabits(){
-//        return HabitSort(habitList);
-//    }
+
+
+    public  ArrayList getHabits(){
+        return this.habitList;
+    }
+
+    public void newHabit(Habit newHabit) {
+    }
 
 //    private ArrayList HabitSort(ArrayList<Habit> habitList) {
 //        //this is where the habit will get sorted into days and by date
