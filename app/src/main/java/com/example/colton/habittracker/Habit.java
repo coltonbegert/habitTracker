@@ -14,10 +14,10 @@ public class Habit implements HabitInterface{
     private Integer completedCount;
 //    private Date dateCreated;
     private ArrayList<String> completionDates;
-    private DateManager dateManager1;
+    private DateManager dateManager;
 
     public Habit(String text) {
-        DateManager dateManager1 = new DateManager();
+        DateManager dateManager = new DateManager();
         setMessage(text);
         this.completedCount = 0;
 //        this.dateCreated = new Date();
@@ -51,6 +51,7 @@ public class Habit implements HabitInterface{
 //        notifyAll();
         this.completedCount += 1;
     }
+
 
     public ArrayList<String> getCompletionDates() {
         return completionDates;

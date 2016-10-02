@@ -25,7 +25,10 @@ import static android.R.attr.resource;
 
 public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<Habit> habitList;
+    private ArrayList<String> repeatList;
     private RecyclerView statisticRecyclerView;
+    private RecyclerView dayRecyclerView;
+    private DayToggleAdapter dayToggleAdapter;
     private StatisticViewAdapter statisticViewAdapter;
 
     public HabitAdapter(ArrayList<Habit> hList) {
@@ -60,6 +63,16 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         LinearLayoutManager layout = new LinearLayoutManager(viewHolder.getStatisticView().getContext(),LinearLayoutManager.VERTICAL,false);
         layout.setAutoMeasureEnabled(true);
         statisticRecyclerView.setLayoutManager(layout);
+
+        repeatList = new ArrayList<>();
+        dayRecyclerView = (RecyclerView) viewHolder.getDayRecyclerView();
+        DateManager dateManager = new DateManager();
+
+        dayToggleAdapter = new DayToggleAdapter(dateManager.daysOfTheWeek, repeatList);
+        dayRecyclerView.setAdapter(dayToggleAdapter);
+        LinearLayoutManager dayLayout = new LinearLayoutManager(viewHolder.getDayFrameLayout().getContext(), LinearLayoutManager.HORIZONTAL,false);
+        dayLayout.setAutoMeasureEnabled(true);
+        dayRecyclerView.setLayoutManager(dayLayout);
 
 
 

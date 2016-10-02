@@ -3,6 +3,7 @@ package com.example.colton.habittracker;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
     private RelativeLayout statisticView;
 //    private ListView completionListView;
     private RecyclerView statisticRecyclerView;
+    private RecyclerView dayRecyclerView;
+    private FrameLayout dayFrameLayout;
 
 
     public HabitViewHolder(View itemView) {
@@ -36,7 +39,18 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
         statisticView = (RelativeLayout) itemView.findViewById(R.id.statisticView);
 //        completionListView = (ListView) itemView.findViewById(R.id.CompletionListView);
         statisticRecyclerView = (RecyclerView) itemView.findViewById(R.id.statisticRecyclerView);
+        dayRecyclerView = (RecyclerView) itemView.findViewById(R.id.DaysRecyclerView);
+        dayFrameLayout = (FrameLayout) itemView.findViewById(R.id.dayFrameLayout);
 
+    }
+
+    public RecyclerView getDayRecyclerView() {
+        return dayRecyclerView;
+    }
+
+    public FrameLayout getDayFrameLayout() {
+
+        return dayFrameLayout;
     }
     public RecyclerView getStatisticRecyclerView() {
         return statisticRecyclerView;
