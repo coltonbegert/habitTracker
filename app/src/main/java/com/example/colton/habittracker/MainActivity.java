@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadFromFile();
+//        loadFromFile();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button okButton = (Button) findViewById(R.id.button);
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 String text = habitText.getText().toString();
                 if (!text.isEmpty()) {
                     Habit newHabit = new Habit(text);
+//                    newHabit.Complete();
                     habitList.add(newHabit);
 //                habitList.add(text);
                     adapter.notifyDataSetChanged();

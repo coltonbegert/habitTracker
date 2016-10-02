@@ -16,10 +16,11 @@ import java.util.List;
 public class DateManager {
     public List<String> daysOfTheWeek;
     private ArrayList<String> repeatDays;
+    private Date d;
 
     public DateManager() {
         daysOfTheWeek = Arrays.asList("Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-        repeatDays = new ArrayList<>();
+        repeatDays = new ArrayList<String>();
 //        String[] daysOfTheWeek = new String[]{"Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 //        days.addall(daysOfTheWeek);
 //        days.addAll(daysOfTheWeek);
@@ -45,9 +46,12 @@ public class DateManager {
 //    http://stackoverflow.com/questions/7651221/android-how-to-get-the-current-day-of-the-week-monday-etc-in-the-users-l
     public String CurrentDay(){
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-        Date d = new Date();
+        d = new Date();
         String dayOfTheWeek = sdf.format(d);
         return dayOfTheWeek;
+    }
+    public String fakeDay(){
+        return "hello world";
     }
     public void Complete(){
 

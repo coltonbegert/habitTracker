@@ -38,6 +38,6 @@ public class DateManagerTest extends ActivityInstrumentationTestCase2 {
     }
     public void testCurrentDay(){
         DateManager dateManager = new DateManager();
-        assertEquals(dateManager.CurrentDay(),"Saturday");
+        assertEquals(dateManager.CurrentDay(),"Sunday");
     }
 }

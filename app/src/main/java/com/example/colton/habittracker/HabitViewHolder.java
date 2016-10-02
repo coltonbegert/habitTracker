@@ -3,6 +3,7 @@ package com.example.colton.habittracker;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -21,6 +22,9 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
     private TextView completedNumber;
     private ToggleButton statisticToggle;
     private RelativeLayout statisticView;
+//    private ListView completionListView;
+    private RecyclerView statisticRecyclerView;
+
 
     public HabitViewHolder(View itemView) {
         super(itemView);
@@ -30,7 +34,14 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
         completedNumber = (TextView) itemView.findViewById(R.id.completedNumber);
         statisticToggle = (ToggleButton) itemView.findViewById(R.id.toggleButton3);
         statisticView = (RelativeLayout) itemView.findViewById(R.id.statisticView);
+//        completionListView = (ListView) itemView.findViewById(R.id.CompletionListView);
+        statisticRecyclerView = (RecyclerView) itemView.findViewById(R.id.statisticRecyclerView);
+
     }
+    public RecyclerView getStatisticRecyclerView() {
+        return statisticRecyclerView;
+    }
+
 
     public TextView getHabitMessage() {
         return habitMessage;
@@ -63,4 +74,8 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
     public ToggleButton getStatisticToggle() {
         return statisticToggle;
     }
+
+//    public ListView getCompletionListView() {
+//        return completionListView;
+//    }
 }
