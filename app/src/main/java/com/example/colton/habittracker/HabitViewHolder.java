@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
     private RecyclerView statisticRecyclerView;
     private RecyclerView dayRecyclerView;
     private FrameLayout dayFrameLayout;
+    private ImageView completedImageView;
 
 
     public HabitViewHolder(View itemView) {
@@ -41,7 +43,12 @@ public class HabitViewHolder extends RecyclerView.ViewHolder {
         statisticRecyclerView = (RecyclerView) itemView.findViewById(R.id.statisticRecyclerView);
         dayRecyclerView = (RecyclerView) itemView.findViewById(R.id.DaysRecyclerView);
         dayFrameLayout = (FrameLayout) itemView.findViewById(R.id.dayFrameLayout);
+        completedImageView = (ImageView) itemView.findViewById(R.id.checkMark);
 
+    }
+
+    public ImageView getCompletedImageView() {
+        return completedImageView;
     }
 
     public RecyclerView getDayRecyclerView() {

@@ -17,7 +17,6 @@ import java.util.List;
 public class DateManager {
     private List<String> daysOfTheWeek;
     private ArrayList<String> repeatDays;
-//    private DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
     private Date d;
     private ArrayList<Date> completionDates;
 

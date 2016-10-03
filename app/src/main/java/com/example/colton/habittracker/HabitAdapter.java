@@ -97,6 +97,7 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 habitManager.completeHabit(habitList.get(position));
                 notifyDataSetChanged();
                 statisticViewAdapter.notifyDataSetChanged();
+                viewHolder.getCompletedImageView().setVisibility(View.VISIBLE);
 
 //                statisticViewAdapter.notifyAll();
             }

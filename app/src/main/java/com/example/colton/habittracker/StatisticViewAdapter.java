@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -14,9 +15,13 @@ import java.util.ArrayList;
 public class StatisticViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<String> completionArray;
     private Habit habit;
+//    private ImageView imageView;
+//    private HabitAdapter habitAdapter;
 
     public StatisticViewAdapter(Habit habit){
         this.habit = habit;
+//        this.imageView = imageView;
+//        this.habitAdapter = habitAdapter;
 //        this.completionArray = completionArray;
     }
 
@@ -37,8 +42,10 @@ public class StatisticViewAdapter extends RecyclerView.Adapter<RecyclerView.View
             @Override
             public void onClick(View v) {
                 habit.removeCompletionDate(habit.getCompletionDates().get(position));
-//                completionArray.remove(completionArray.get(position));
                 notifyDataSetChanged();
+//                imageView.setVisibility(View.INVISIBLE);
+//                completionArray.remove(completionArray.get(position));
+//                habitAdapter.notifyDataSetChanged();
             }
         });
 

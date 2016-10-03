@@ -35,30 +35,10 @@
         tools:context="com.example.colton.habittracker.MainActivity"
         tools:showIn="@layout/activity_main">
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/enterHabit"
-            android:layout_toStartOf="@+id/button"
-            android:hint="Enter Habit" />
-
-        <Button
-            android:text="OK"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/button"
-            android:layout_alignBottom="@+id/enterHabit" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/enterHabit"
             android:layout_alignParentStart="true"
             android:id="@+id/habitRecyclerView" />
 

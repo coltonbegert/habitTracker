@@ -20,6 +20,7 @@
         card_view:cardCornerRadius="2dp">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/relativeLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -28,8 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:id="@+id/habitTextView"
-                android:textSize="22sp"
-                android:layout_below="@+id/relativeLayout" />
+                android:textSize="22sp" />
 
             <Button
                 android:text="Button"
@@ -39,7 +39,13 @@
                 android:layout_alignParentEnd="true"
                 android:id="@+id/habitCompleteButton" />
 
-
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/checkMark"
+                android:layout_toStartOf="@+id/completedNumber"
+                android:src="@drawable/ic_check_black_24dp"
+                android:visibility="invisible"/>
 
             <TextView
                 android:text="TextView"

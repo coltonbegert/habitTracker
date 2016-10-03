@@ -38,11 +38,11 @@ import java.util.ArrayList;
 //test of github
 public class MainActivity extends AppCompatActivity {
 
-    private static final String FILENAME = "savedHabits22745679.sav";
+//    private static final String FILENAME = "savedHabits22745679.sav";
 //    private ArrayList<Habit> habitList = new ArrayList<>();
     private  ArrayList<Habit> habitList;
     private HabitAdapter adapter;
-    private EditText habitText;
+//    private EditText habitText;
     private RecyclerView habitRecyclerView;
     private HabitManager habitManager;
 
@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
         habitManager = new HabitManager(habitList);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        Button okButton = (Button) findViewById(R.id.button);
+//        Button okButton = (Button) findViewById(R.id.button);
         setSupportActionBar(toolbar);
-        habitText = (EditText) findViewById(R.id.enterHabit);
+//        habitText = (EditText) findViewById(R.id.enterHabit);
 
         habitRecyclerView = (RecyclerView) findViewById(R.id.habitRecyclerView);
         adapter = new HabitAdapter(habitManager);
@@ -73,27 +73,27 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("Title");
-        alert.setMessage("Message");
-
-// Set an EditText view to get user input
-        final EditText input = new EditText(this);
-        alert.setView(input);
-
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                habitManager.addHabit(new Habit(input.getText().toString()));
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Canceled.
-            }
-        });
+//        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+//
+//        alert.setTitle("Title");
+//        alert.setMessage("Message");
+//
+//// Set an EditText view to get user input
+//        final EditText input = new EditText(this);
+//        alert.setView(input);
+//
+//        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                habitManager.addHabit(new Habit(input.getText().toString()));
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//
+//        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                // Canceled.
+//            }
+//        });
 
 
 //        alert.show();
@@ -103,32 +103,45 @@ public class MainActivity extends AppCompatActivity {
         final Context mContext = this;
 
 
-        okButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = habitText.getText().toString();
-                if (!text.isEmpty()) {
-                    Habit newHabit = new Habit(text);
-//                    newHabit.Complete();
-                    habitManager.addHabit(newHabit);
-//                    habitList.add(newHabit);
-//                habitList.add(text);
-                    adapter.notifyDataSetChanged();
-                }
-
-            }
-        });
+//        okButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String text = habitText.getText().toString();
+//                if (!text.isEmpty()) {
+//                    Habit newHabit = new Habit(text);
+////                    newHabit.Complete();
+//                    habitManager.addHabit(newHabit);
+////                    habitList.add(newHabit);
+////                habitList.add(text);
+//                    adapter.notifyDataSetChanged();
+//                }
+//
+//            }
+//        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                habitManager.newHabit();
-                EditTextPopup editText = new EditTextPopup(habitManager.newHabit(), mContext);
+//                habitManager.newHabit();
+                EditTextPopup editTextPopup = new EditTextPopup(mContext, habitManager, adapter);
+//                String habitMessage = editTextPopup.getHabitMessage();
+//                onE
+                if (editTextPopup.newMessage()){
+                    habitManager.addHabit(new Habit(editTextPopup.getHabitMessage()));
+
+                    adapter.notifyDataSetChanged();
+                    Snackbar.make(view,"hello",Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                }
+
+//                habitManager.addHabit(new Habit(new EditText()));
+//                EditTextPopup editText = new EditTextPopup(habitManager.newHabit(), mContext);
 //                alert.show();
 //                habitManager.newHabit(new Habit(newHabitString));
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
     }
