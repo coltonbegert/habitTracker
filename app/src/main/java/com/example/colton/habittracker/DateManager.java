@@ -1,5 +1,6 @@
 package com.example.colton.habittracker;
 
+//import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,18 +15,22 @@ import java.util.List;
  */
 
 public class DateManager {
-    public List<String> daysOfTheWeek;
+    private List<String> daysOfTheWeek;
     private ArrayList<String> repeatDays;
+//    private DateFormat df = DateFormat.getDateInstance(DateFormat.FULL);
     private Date d;
+    private ArrayList<Date> completionDates;
 
     public DateManager() {
         daysOfTheWeek = Arrays.asList("Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
         repeatDays = new ArrayList<String>();
-//        String[] daysOfTheWeek = new String[]{"Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-//        days.addall(daysOfTheWeek);
-//        days.addAll(daysOfTheWeek);
-//        Days day = new Days();
+        completionDates = new ArrayList<>();
 
+
+    }
+
+    public List<String> getDaysOfTheWeek() {
+        return daysOfTheWeek;
     }
 
     public void AddRepeatingDay (String day){
@@ -50,10 +55,29 @@ public class DateManager {
         String dayOfTheWeek = sdf.format(d);
         return dayOfTheWeek;
     }
-    public String fakeDay(){
-        return "hello world";
-    }
+
     public void Complete(){
 
+    }
+
+    public ArrayList<Date> getCompletionDates() {
+        return this.completionDates;
+
+    }
+    public String getFormattedDate(Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE, MMMM dd, yyyy");
+        return simpleDateFormat.format(date);
+
+    }
+
+    public void setCompletionDates(ArrayList<Date> completionDates) {
+        this.completionDates = completionDates;
+    }
+    public void addCompletionDate(){
+        Date date = new Date();
+        this.completionDates.add(date);
+    }
+    public void removeCompletionDate(Date completion){
+        this.completionDates.remove(completion);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.colton.habittracker;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by colton on 2016-10-01.
@@ -9,8 +11,9 @@ import java.util.ArrayList;
 public class HabitManager {
     private ArrayList<Habit> habitList;
 
-    public HabitManager() {
-        this.habitList = new ArrayList<>();
+    public HabitManager(ArrayList<Habit> habitList) {
+        this.habitList = habitList;
+//        this.habitList = new ArrayList<>();
 
     }
 
@@ -20,11 +23,16 @@ public class HabitManager {
         }
 
     }
-    public void deleteHait(Habit habit){
+    public void deleteHabit(Habit habit){
         if(habitList.contains(habit)) {
             habitList.remove(habit);
         }
     }
+
+    public ArrayList<Habit> getHabitList() {
+        return this.habitList;
+    }
+
     public void setHabitList(ArrayList<Habit> habitList){
         this.habitList = habitList;
     }
@@ -36,7 +44,35 @@ public class HabitManager {
         return this.habitList;
     }
 
-    public void newHabit(Habit newHabit) {
+    public Habit newHabit() {
+        Habit habit = new Habit("NULL");
+        this.addHabit(habit);
+        return habit;
+    }
+
+    public void completeHabit(Habit habit){
+        habit.complete();
+//        notifyAll();
+    }
+
+    public ArrayList<Date> getHabitCompletionList(Habit habit) {
+        return habit.getCompletionDates();
+    }
+
+    public void removeHabitCompletion(Habit habit,String completion){
+
+    }
+
+    public String getHabitText(Habit habit){
+        return habit.getMessage();
+    }
+
+    public String getCompletedCount(Habit habit) {
+        return habit.getCompletedCount().toString();
+    }
+
+    public DateManager getHabitDateManager(Habit habit){
+        return habit.getDateManager();
     }
 
 //    private ArrayList HabitSort(ArrayList<Habit> habitList) {

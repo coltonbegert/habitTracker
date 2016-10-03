@@ -13,9 +13,11 @@ import java.util.ArrayList;
 
 public class StatisticViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<String> completionArray;
+    private Habit habit;
 
-    public StatisticViewAdapter(ArrayList<String> completionArray) {
-        this.completionArray = completionArray;
+    public StatisticViewAdapter(Habit habit){
+        this.habit = habit;
+//        this.completionArray = completionArray;
     }
 
     @Override
@@ -28,15 +30,23 @@ public class StatisticViewAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final  ChildViewHolder childViewHolder = (ChildViewHolder) holder;
-        childViewHolder.getDateTextView().setText(completionArray.get(position));
+        childViewHolder.getDateTextView().setText(habit.getFormattedDate(habit.getCompletionDates().get(position)));
+        childViewHolder.getHabitCompletionDelete().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                habit.removeCompletionDate(habit.getCompletionDates().get(position));
+//                completionArray.remove(completionArray.get(position));
+                notifyDataSetChanged();
+            }
+        });
 
 
     }
 
     @Override
     public int getItemCount() {
-        return this.completionArray.size();
+        return this.habit.getCompletionDates().size();
     }
 }

@@ -1,5 +1,8 @@
 package com.example.colton.habittracker;
 
+import android.graphics.Color;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +19,12 @@ import java.util.List;
 public class DayToggleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<String> daysOfWeek;
     private ArrayList<String> repeatDays;
+    private DateManager dateManager;
 
-    public DayToggleAdapter(List<String> daysOfWeek, ArrayList<String> repeatDays) {
-        this.daysOfWeek = daysOfWeek;
-        this.repeatDays = repeatDays;
+    public DayToggleAdapter(DateManager dateManager) {
+//        this.daysOfWeek = daysOfWeek;
+        this.dateManager = dateManager;
+        this.daysOfWeek = this.dateManager.getDaysOfTheWeek();
 
     }
 
@@ -38,31 +43,36 @@ public class DayToggleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         final DayViewHolder viewHolder = (DayViewHolder) holder;
 
 
-
-        viewHolder.getDayToggleButton().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    if (!repeatDays.contains(daysOfWeek.get(position))) {
-                        repeatDays.add(daysOfWeek.get(position));
-                        notifyDataSetChanged();
-                    }
-                } else {
-                    if (repeatDays.contains(daysOfWeek.get(position))) {
-                        repeatDays.remove(daysOfWeek.get(position));
-                        notifyDataSetChanged();
-                    }
-
-                }
-            }
-        });
-
-        if (repeatDays.contains(daysOfWeek.get(position))) {
+        if (dateManager.getRepeatDays().contains(daysOfWeek.get(position))) {
             viewHolder.getDayToggleButton().setChecked(true);
         } else {
             viewHolder.getDayToggleButton().setChecked(false);
         }
         viewHolder.getDayToggleButton().setText(daysOfWeek.get(position).substring(0,3));
+        viewHolder.getDayToggleButton().setTextColor(ContextCompat.getColor(viewHolder.getDayToggleButton().getContext(),R.color.colorAccent));
+
+        viewHolder.getDayToggleButton().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    dateManager.AddRepeatingDay(daysOfWeek.get(position));
+//                    dateManager.notify();
+//                    notifyDataSetChanged();
+//                    notifyDataSetChanged();
+//                    viewHolder.getDayToggleButton().setBackgroundColor(R.color.colorPrimary);
+//                    viewHolder.getDayToggleButton().setText(daysOfWeek.get(position).substring(0,3));
+                } else {
+                    dateManager.RemoveRepeatingDay(daysOfWeek.get(position));
+//                    viewHolder.getDayToggleButton().setBackgroundColor(Color.TRANSPARENT);
+//                    notifyDataSetChanged();
+//                    viewHolder.getDayToggleButton().setText(daysOfWeek.get(position).substring(0,3));
+                }
+//                viewHolder.getDayToggleButton().setText(daysOfWeek.get(position).substring(0,3));
+//                viewHolder.getDayToggleButton().setTextColor(R.color.colorAccent);
+            }
+        });
+
+
 
 
 

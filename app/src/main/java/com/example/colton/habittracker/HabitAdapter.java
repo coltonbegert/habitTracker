@@ -1,20 +1,13 @@
 package com.example.colton.habittracker;
 
-import android.content.Context;
-import android.graphics.drawable.VectorDrawable;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.ListView;
 
 import java.util.ArrayList;
-
-import static android.R.attr.resource;
 
 /**
  * Created by colton on 2016-09-24.
@@ -24,17 +17,18 @@ import static android.R.attr.resource;
     // This code is open source.
 
 public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<Habit> habitList;
+    private HabitManager habitManager;
+//    private ArrayList<Habit> habitList;
     private ArrayList<String> repeatList;
     private RecyclerView statisticRecyclerView;
     private RecyclerView dayRecyclerView;
     private DayToggleAdapter dayToggleAdapter;
     private StatisticViewAdapter statisticViewAdapter;
 
-    public HabitAdapter(ArrayList<Habit> hList) {
+    public HabitAdapter(HabitManager habitmanager) {
 //        super(context, resource);
-        this.habitList = hList;
-
+//        this.habitList = hList;
+        this.habitManager = habitmanager;
     }
 
     @Override
@@ -57,18 +51,20 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 //        ListView
 //        viewHolder.getCompletionListView()
 
+        final ArrayList<Habit> habitList = habitManager.getHabits();
+
         statisticRecyclerView = (RecyclerView) viewHolder.getStatisticRecyclerView();
-        statisticViewAdapter = new StatisticViewAdapter(habitList.get(position).getCompletionDates());
+//        statisticViewAdapter = new StatisticViewAdapter(habitManager.getHabitCompletionList(habitList.get(position)));
+        statisticViewAdapter = new StatisticViewAdapter(habitList.get(position));
         statisticRecyclerView.setAdapter(statisticViewAdapter);
         LinearLayoutManager layout = new LinearLayoutManager(viewHolder.getStatisticView().getContext(),LinearLayoutManager.VERTICAL,false);
         layout.setAutoMeasureEnabled(true);
         statisticRecyclerView.setLayoutManager(layout);
 
-        repeatList = new ArrayList<>();
+//        repeatList = new ArrayList<>();
         dayRecyclerView = (RecyclerView) viewHolder.getDayRecyclerView();
-        DateManager dateManager = new DateManager();
 
-        dayToggleAdapter = new DayToggleAdapter(dateManager.daysOfTheWeek, repeatList);
+        dayToggleAdapter = new DayToggleAdapter(habitManager.getHabitDateManager(habitList.get(position)));
         dayRecyclerView.setAdapter(dayToggleAdapter);
         LinearLayoutManager dayLayout = new LinearLayoutManager(viewHolder.getDayFrameLayout().getContext(), LinearLayoutManager.HORIZONTAL,false);
         dayLayout.setAutoMeasureEnabled(true);
@@ -76,8 +72,9 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-        viewHolder.getHabitMessage().setText(habitList.get(position).getMessage());
-        viewHolder.getCompletedNumber().setText(habitList.get(position).getCompletedCount().toString());
+        viewHolder.getHabitMessage().setText(habitManager.getHabitText(habitList.get(position)));
+        viewHolder.getCompletedNumber().setText(habitManager.getCompletedCount(habitList.get(position)));
+//                habitList.get(position).getCompletedCount().toString());
         viewHolder.getHabitCompleteButton().setText("complete");
 
 
@@ -87,7 +84,9 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             @Override
             public void onClick(View v) {
                 viewHolder.getStatisticToggle().setChecked(false);
-                habitList.remove(position);
+//                habitList.remove(position);
+
+                habitManager.deleteHabit(habitList.get(position));
                 notifyDataSetChanged();
                 statisticViewAdapter.notifyDataSetChanged();
             }
@@ -95,7 +94,7 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         viewHolder.getHabitCompleteButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                habitList.get(position).Complete();
+                habitManager.completeHabit(habitList.get(position));
                 notifyDataSetChanged();
                 statisticViewAdapter.notifyDataSetChanged();
 
@@ -130,7 +129,7 @@ public class HabitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 //
     @Override
     public int getItemCount() {
-        return this.habitList.size();
+        return this.habitManager.getHabits().size();
     }
 
 }

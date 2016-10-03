@@ -11,17 +11,15 @@ import java.util.Date;
 
 public class Habit implements HabitInterface{
     private String message;
-    private Integer completedCount;
-//    private Date dateCreated;
-    private ArrayList<String> completionDates;
+//    private Integer completedCount;
     private DateManager dateManager;
 
     public Habit(String text) {
-        DateManager dateManager = new DateManager();
+        this.dateManager = new DateManager();
         setMessage(text);
-        this.completedCount = 0;
+//        this.completedCount = 0;
 //        this.dateCreated = new Date();
-        completionDates = new ArrayList<String>();
+//        completionDates = new ArrayList<String>();
 //        completionDates.add("Monday1");
 //        completionDates.add("jsdfkjsdf");
 //        notifyAll();
@@ -36,25 +34,43 @@ public class Habit implements HabitInterface{
     }
 
     public Integer getCompletedCount() {
-        return completedCount;
+        return dateManager.getCompletionDates().size();
     }
 
-    public void setCompletedCount(Integer completedCount) {
-        this.completedCount = completedCount;
-    }
+//    public void setCompletedCount(Integer completedCount) {
+//        this.completedCount = completedCount;
+//    }
 
-    public void Complete() {
-        DateManager testDateManager = new DateManager();
+    public void complete() {
+//        DateManager testDateManager = new DateManager();
 
 //        String day = dateManager1.fakeDay();
-        completionDates.add(testDateManager.CurrentDay());
+//        completionDates.add(testDateManager.CurrentDay());
 //        notifyAll();
-        this.completedCount += 1;
+//        dateManager.addCompletionDate(dateManager.);
+        dateManager.addCompletionDate();
+//        completionDates.add(dateManager.CurrentDay());
+//        this.completedCount += 1;
     }
 
 
-    public ArrayList<String> getCompletionDates() {
-        return completionDates;
+    public ArrayList<Date> getCompletionDates() {
+        return dateManager.getCompletionDates();
+    }
+    public String getFormattedDate(Date date){
+        return dateManager.getFormattedDate(date);
+    }
+    public void removeCompletionDate(Date date){
+        dateManager.removeCompletionDate(date);
+    }
+
+//    public void removeCompletion(String completion){
+//        dateManager.
+//    }
+//    public
+
+    public DateManager getDateManager() {
+        return dateManager;
     }
 
     @Override
